@@ -7,6 +7,7 @@ ARG TPL_VERSION=v1.5.0
 ARG TPL_URL_BASE=https://github.com/jitsi/tpl/releases/download/${TPL_VERSION}
 
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
+ENV S6_READ_ONLY_ROOT=1
 
 COPY rootfs /
 
