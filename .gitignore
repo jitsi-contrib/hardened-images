@@ -1,0 +1,12 @@
+*~
+*.bak
+*.log
+*.sw?
+.env*
+
+.DS_Store
+.idea
+.vscode
+
+docker-compose.override.yml
+log-analyser/grafana
