@@ -33,6 +33,17 @@ jobs:
         username: ${{ github.repository_owner }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
+    - name: Extract Short Tag
+      id: extract_tag
+      run: |
+        if [[ "${{ env.IMAGE_VERSION }}" == stable-* ]]; then
+          echo "short=stable" >> $GITHUB_OUTPUT
+        elif [[ "${{ env.IMAGE_VERSION }}" == unstable-* ]]; then
+          echo "short=unstable" >> $GITHUB_OUTPUT
+        else
+          echo "short=" >> $GITHUB_OUTPUT
+        fi
+
     - name: Metadata
       uses: docker/metadata-action@v5
       id: meta
@@ -41,6 +52,11 @@ jobs:
         tags: |
           type=raw,value=latest
           type=raw,value=${{ env.IMAGE_VERSION }}
+          ${{
+            steps.extract_tag.outputs.short != '' &&
+            format('type=raw,value={0}', steps.extract_tag.outputs.short) ||
+            ''
+          }}
 
     - name: Build and push
       uses: docker/build-push-action@v5
