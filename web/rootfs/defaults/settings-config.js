@@ -137,7 +137,7 @@ config.p2p = {
 };
 
 {{ if .Env.P2P_STUN_SERVERS -}}
-config.p2p.stunServers = '{{ .Env.P2P_STUN_SERVERS }}'.split(',').map(url => ({ urls: 'stun:' + url }));
+config.p2p.stunServers = '{{ .Env.P2P_STUN_SERVERS }}'.split(',').map(function (url) { return { urls: 'stun:' + url }; } );
 
 {{ end -}}
 
@@ -358,6 +358,7 @@ config.enableTcc = false;
 // Transcriptions (subtitles and buttons can be configured in interface_config)
 config.transcription = {
     enabled: {{ $ENABLE_TRANSCRIPTIONS }},
+    disableClosedCaptions: {{ not $ENABLE_TRANSCRIPTIONS }},
     translationLanguages: {{ $TRANSLATION_LANGUAGES }},
     translationLanguagesHead: {{ $TRANSLATION_LANGUAGES_HEAD }},
     useAppLanguage: {{ $USE_APP_LANGUAGE }},
