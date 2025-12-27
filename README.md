@@ -1,5 +1,29 @@
 # Hardened Images
 
+This repository provides hardened Docker images for Jitsi Meet.
+
+The goal is to offer a more secure version of the Jitsi stack while staying as
+close as possible to
+[the official project](https://github.com/jitsi/docker-jitsi-meet). These images
+are designed for compatibility; however, because of the hardening steps, minor
+configuration changes are required compared to the standard setup.
+
+##### Security Hardening
+
+- **Non-Root Processes:** All components are configured to run with unprivileged
+  user accounts to limit potential impact if a process is compromised.
+
+- **Read-Only Filesystem:** Containers are built to support running with a
+  read-only root filesystem (_with specific paths mounted as volumes_),
+  preventing unauthorized persistent changes to the image at runtime.
+
+##### Key Focus
+
+- **Reduced Attack Surface:** Focused strictly on security-first builds.
+
+- **Compatibility:** Designed to function with official Jitsi logic with minimal
+  adjustments.
+
 ### Volumes
 
 ```bash
