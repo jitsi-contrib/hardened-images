@@ -1,4 +1,4 @@
-ARG JITSI_REPO=jitsi
+ARG JITSI_REPO=ghcr.io/jitsi-contrib/hardened-images
 ARG BASE_TAG=latest
 
 FROM ${JITSI_REPO}/base:${BASE_TAG} AS builder
@@ -33,8 +33,9 @@ LABEL org.opencontainers.image.url="https://prosody.im/"
 LABEL org.opencontainers.image.source="https://github.com/jitsi/docker-jitsi-meet"
 LABEL org.opencontainers.image.documentation="https://jitsi.github.io/handbook/"
 
-ARG VERSION_JITSI_CONTRIB_PROSODY_PLUGINS="20250426"
+ARG VERSION_JITSI_CONTRIB_PROSODY_PLUGINS="20250923"
 ARG VERSION_MATRIX_USER_VERIFICATION_SERVICE_PLUGIN="1.8.0"
+ARG PROSODY_PACKAGE="prosody"
 
 COPY rootfs /
 
@@ -54,24 +55,20 @@ RUN \
     lua-luaossl \
     lua-sec \
     lua-unbound \
-    prosody \
+    $PROSODY_PACKAGE \
     sasl2-bin \
     && \
   apt-dpkg-wrap apt-get install -y -d \
     jitsi-meet-prosody \
     && \
   dpkg -x /var/cache/apt/archives/jitsi-meet-prosody*.deb /tmp/pkg && \
-  rm /tmp/pkg/usr/share/jitsi-meet/prosody-plugins/mod_smacks.lua && \
-  mv /tmp/pkg/usr/share/jitsi-meet/prosody-plugins /prosody-plugins && \
+  cp -a /tmp/pkg/usr/share/jitsi-meet/prosody-plugins/* /prosody-plugins && \
   rm -rf /tmp/pkg && \
   apt-cleanup && \
   rm -rf /etc/prosody && \
   mv /usr/share/lua/5.3/inspect.lua /usr/share/lua/5.4/ && \
   rm -rf /usr/lib/lua/{5.1,5.2,5.3} && \
   rm -rf /usr/share/lua/{5.1,5.2,5.3} && \
-  wget -qO /prosody-plugins/mod_auth_cyrus.lua https://hg.prosody.im/prosody-modules/raw-file/65438e4ba563/mod_auth_cyrus/mod_auth_cyrus.lua && \
-  wget -qO /prosody-plugins/sasl_cyrus.lua https://hg.prosody.im/prosody-modules/raw-file/65438e4ba563/mod_auth_cyrus/sasl_cyrus.lua  && \
-  wget -qO /prosody-plugins/mod_http_health.lua https://hg.prosody.im/prosody-modules/raw-file/2b80188448d1/mod_http_health/mod_http_health.lua && \
 \
   wget https://github.com/matrix-org/prosody-mod-auth-matrix-user-verification/archive/refs/tags/v$VERSION_MATRIX_USER_VERIFICATION_SERVICE_PLUGIN.tar.gz && \
   tar -xf v$VERSION_MATRIX_USER_VERIFICATION_SERVICE_PLUGIN.tar.gz && \
