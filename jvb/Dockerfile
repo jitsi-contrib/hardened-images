@@ -1,4 +1,4 @@
-ARG JITSI_REPO=jitsi
+ARG JITSI_REPO=ghcr.io/jitsi-contrib/hardened-images
 ARG BASE_TAG=latest
 FROM ${JITSI_REPO}/base-java:${BASE_TAG}
 
