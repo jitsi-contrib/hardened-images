@@ -1,0 +1,4 @@
+# The first uncommented line must be the version used when publishing images.
+# If there is no version then the version will be generated automatically using
+# unstable-YYYYMMDD format.
+#stable-10655

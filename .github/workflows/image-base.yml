@@ -35,7 +35,7 @@ jobs:
 
     - name: Get Version
       run: |
-        VER=$(cat VERSION 2>/dev/null | xargs)
+        VER=$(egrep -m 1 -v '^#' VERSION 2>/dev/null)
         echo "VERSION=${VER:-unstable-$(date +'%Y%m%d')}" >> $GITHUB_ENV
 
     - name: Extract Short Tag
