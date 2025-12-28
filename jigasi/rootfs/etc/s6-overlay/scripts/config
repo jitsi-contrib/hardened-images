@@ -106,4 +106,5 @@ if [[ -f /run/jigasi/config/custom-logging.properties ]]; then
     cat /run/jigasi/config/custom-logging.properties >> /run/jigasi/config/logging.properties
 fi
 
-#chown jigasi /run/jigasi/config -R
+# This is not need since it already belongs to s6
+#chown s6 /run/jigasi/config -R

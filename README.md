@@ -68,8 +68,8 @@ EOF
 
 ```bash
 # environment variables
-export COMPOSE_PATH_SEPARATOR="|"
-export COMPOSE_FILE="docker-compose.yml|jibri.yml"
+export COMPOSE_PATH_SEPARATOR=","
+export COMPOSE_FILE="docker-compose.yml,jibri.yml,jigasi.yml"
 export COMPOSE_ENV_FILES=".env.myconfig"
 
 # pull
