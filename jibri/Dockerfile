@@ -13,7 +13,7 @@ LABEL org.opencontainers.image.documentation="https://jitsi.github.io/handbook/"
 ARG USE_CHROMIUM=0
 #ARG CHROME_RELEASE=latest
 # https://googlechromelabs.github.io/chrome-for-testing/
-ARG CHROME_RELEASE=130.0.6723.116
+ARG CHROME_RELEASE=143.0.7499.40
 
 COPY rootfs/ /
 
@@ -32,6 +32,7 @@ RUN \
     libgl1-mesa-dri \
     procps \
     pulseaudio \
+    rclone \
     rtkit \
     unzip \
     && \
