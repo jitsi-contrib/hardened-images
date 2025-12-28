@@ -42,6 +42,9 @@ chmod 777 ~/.jitsi-meet-volumes/tmp/web-load-test
 
 ## Environment file
 
+Run the following commands for a quick test in a local environment. Set your own
+local IP for `MY_IP`:
+
 ```bash
 cp env.example .env
 bash gen-passwords.sh
