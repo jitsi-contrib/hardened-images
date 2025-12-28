@@ -4,7 +4,7 @@ This repository provides **hardened Docker images** for Jitsi Meet.
 
 The goal is to offer a more secure version of the Jitsi stack while staying as
 close as possible to
-[the official project](https://github.com/jitsi/docker-jitsi-meet). These images
+[the official images](https://github.com/jitsi/docker-jitsi-meet). These images
 are designed for compatibility; however, because of the hardening steps, **minor
 configuration changes** are required compared to the standard setup.
 
@@ -64,12 +64,16 @@ EOF
 ## Running
 
 ```bash
+# environment variables
+export COMPOSE_FILE=docker-compose.yml:jibri.yml
+export COMPOSE_ENV_FILES=.env.myconfig
+
 # pull
-docker compose --env-file .env.myconfig -f docker-compose.yml -f jibri.yml pull
+docker compose pull
 
 # run
-docker compose --env-file .env.myconfig -f docker-compose.yml -f jibri.yml up
+docker compose up -d
 
 # stop
-docker compose --env-file .env.myconfig -f docker-compose.yml -f jibri.yml down --remove-orphans
+docker compose down --remove-orphans
 ```
