@@ -82,12 +82,10 @@ tpl /defaults/xorg-video-dummy.conf > /run/jibri/config/xorg-video-dummy.conf
 # make recording dir
 [ -z "${JIBRI_RECORDING_DIR}" ] && export JIBRI_RECORDING_DIR=/storage/recordings
 mkdir -p ${JIBRI_RECORDING_DIR}
-chown -R s6 ${JIBRI_RECORDING_DIR}
 
 # make logs dir
 JIBRI_LOGS_DIR=/storage/logs
 mkdir -p ${JIBRI_LOGS_DIR}
-chown -R s6 ${JIBRI_LOGS_DIR}
 
 # make .config and .local dirs
 # these are temporary folders linked to /home/s6/.config and /home/s6/.local
