@@ -55,6 +55,9 @@ cat <<EOF >>.env.myconfig
 # Customized values
 PUBLIC_URL=https://${MY_IP}:8443
 JVB_ADVERTISE_IPS=${MY_IP}
+
+ENABLE_RECORDING=1
+IGNORE_CERTIFICATE_ERRORS=true
 EOF
 ```
 
@@ -62,11 +65,11 @@ EOF
 
 ```bash
 # pull
-docker compose --env-file .env.myconfig -f docker-compose.yml pull
+docker compose --env-file .env.myconfig -f docker-compose.yml -f jibri.yml pull
 
 # run
-docker compose --env-file .env.myconfig -f docker-compose.yml up
+docker compose --env-file .env.myconfig -f docker-compose.yml -f jibri.yml up
 
 # stop
-docker compose --env-file .env.myconfig -f docker-compose.yml down --remove-orphans
+docker compose --env-file .env.myconfig -f docker-compose.yml -f jibri.yml down --remove-orphans
 ```
