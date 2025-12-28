@@ -1,8 +1,6 @@
-version: '3.5'
-
 services:
     jibri:
-        image: jitsi/jibri:${JITSI_IMAGE_VERSION:-unstable}
+        image: ghcr.io/jitsi-contrib/hardened-images/jibri:${JITSI_IMAGE_VERSION:-unstable}
         restart: ${RESTART_POLICY:-unless-stopped}
         volumes:
             - ${CONFIG}/jibri:/config:Z
