@@ -14,7 +14,7 @@ configuration changes** are required compared to the standard setup.
   user accounts to limit potential impact if a process is compromised.
 
 - **Read-Only Filesystem:** Containers are built to support running with a
-  read-only root filesystem (_with specific paths mounted as volumes_),
+  read-only root filesystem (_with specific paths mounted as writable volumes_),
   preventing unauthorized persistent changes to the image at runtime.
 
 #### Key Focus
