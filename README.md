@@ -10,8 +10,9 @@ configuration changes** are required compared to the standard setup.
 
 #### Security Hardening
 
-- **Non-Root Processes:** All components are configured to run with unprivileged
-  user accounts to limit potential impact if a process is compromised.
+- **Non-Root Processes**
+  All components are configured to run with unprivileged user accounts to limit
+  potential impact if a process is compromised.
 
 - **Read-Only Filesystem:** Containers are built to support running with a
   read-only root filesystem (_with specific paths mounted as writable volumes_),
