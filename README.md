@@ -94,15 +94,15 @@ docker compose down --remove-orphans
   latest stable version (`v3.2.1.0`)
 - All processes are executed by `s6` user without `root` privileges.
 - Containers' filesystems are read-only.
-- Mounted volumes:
+- Mounted permanent volumes:
   - `/config` \
     _read-only volume containing custom config files_
   - `/storage` \
     _writable volume containing files (recording, logs, etc.) created during the
     runtime_
-  - `/tmp` \
+  - `/tmp/<folder>` \
     _writable volume containing temporary files created during the runtime_
-- The following folders are also writable for `s6` user:
+- The following `tmpfs` volumes are also writable for `s6` user:
   - `/run`
   - `/tmp`
 - Generated config files are created inside `/run` using templates.
