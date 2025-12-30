@@ -3,6 +3,10 @@ services:
     web:
         image: ghcr.io/jitsi-contrib/hardened-images/web:${JITSI_IMAGE_VERSION:-unstable}
         restart: ${RESTART_POLICY:-unless-stopped}
+        read_only: true
+        tmpfs:
+            - /run:exec,size=16M
+            - /tmp:size=16M
         ports:
             - '${HTTP_PORT}:80'
             - '${HTTPS_PORT}:443'
@@ -193,6 +197,10 @@ services:
     prosody:
         image: ghcr.io/jitsi-contrib/hardened-images/prosody:${JITSI_IMAGE_VERSION:-unstable}
         restart: ${RESTART_POLICY:-unless-stopped}
+        read_only: true
+        tmpfs:
+            - /run:exec,size=16M
+            - /tmp:size=16M
         expose:
             - '${XMPP_PORT:-5222}'
             - '${PROSODY_S2S_PORT:-5269}'
@@ -345,6 +353,10 @@ services:
     jicofo:
         image: ghcr.io/jitsi-contrib/hardened-images/jicofo:${JITSI_IMAGE_VERSION:-unstable}
         restart: ${RESTART_POLICY:-unless-stopped}
+        read_only: true
+        tmpfs:
+            - /run:exec,size=16M
+            - /tmp:size=16M
         ports:
             - '127.0.0.1:${JICOFO_REST_PORT:-8888}:8888'
         volumes:
@@ -441,6 +453,10 @@ services:
     jvb:
         image: ghcr.io/jitsi-contrib/hardened-images/jvb:${JITSI_IMAGE_VERSION:-unstable}
         restart: ${RESTART_POLICY:-unless-stopped}
+        read_only: true
+        tmpfs:
+            - /run:exec,size=16M
+            - /tmp:exec,size=16M
         ports:
             - '${JVB_PORT:-10000}:${JVB_PORT:-10000}/udp'
             - '127.0.0.1:${JVB_COLIBRI_PORT:-8080}:8080'

@@ -2,6 +2,10 @@ services:
     transcriber:
         image: ghcr.io/jitsi-contrib/hardened-images/jigasi:${JITSI_IMAGE_VERSION:-unstable}
         restart: ${RESTART_POLICY:-unless-stopped}
+        read_only: true
+        tmpfs:
+            - /run:exec,size=16M
+            - /tmp:size=128M
         volumes:
             - ${CONFIG}/transcriber:/config:Z
             - ${CONFIG}/storage/transcripts:/tmp/transcripts:z

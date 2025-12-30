@@ -2,6 +2,10 @@ services:
     jibri:
         image: ghcr.io/jitsi-contrib/hardened-images/jibri:${JITSI_IMAGE_VERSION:-unstable}
         restart: ${RESTART_POLICY:-unless-stopped}
+        read_only: true
+        tmpfs:
+            - /run:exec,size=16M
+            - /tmp:size=128M
         volumes:
             - ${CONFIG}/jibri:/config:Z
             - ${CONFIG}/storage/jibri:/storage:Z
