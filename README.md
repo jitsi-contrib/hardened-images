@@ -102,7 +102,7 @@ docker compose down --remove-orphans
     runtime_
   - `/tmp` \
     _writable volume containing temporary files created during the runtime_
-- The following `tmpsfs` folders are also writable:
+- The following folders are also writable for `s6` user:
   - `/run`
   - `/tmp`
 - Generated config files are created inside `/run` using templates.
