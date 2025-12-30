@@ -4,7 +4,7 @@ services:
         restart: ${RESTART_POLICY:-unless-stopped}
         read_only: true
         tmpfs:
-            - /run:exec,size=16M
+            - /run:exec,size=256M
             - /tmp:size=128M
         volumes:
             - ${CONFIG}/jibri:/config:Z
