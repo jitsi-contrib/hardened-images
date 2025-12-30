@@ -92,16 +92,17 @@ docker compose down --remove-orphans
 
 - [s6-overlay](https://github.com/just-containers/s6-overlay) is upgraded to the
   latest stable version (`v3.2.1.0`)
-- All processes is executed by `s6` user without `root` privileges.
-- The root filesystem is read-only.
-- Mounted volumes are:
-  - `/config` contains read-only config files.
-  - `/storage` contains created files during the runtime such as recordings,
-    logs, etc.
-  - `/tmp` contains created temporary files during the runtime.
-- Generated config files are created inside `/run`. The custom config files are
-  taken from the mounted `/config` folder.
-- Writable folders by `s6` are:
+- All processes are executed by `s6` user without `root` privileges.
+- Containers' filesystems are read-only.
+- Mounted volumes:
+  - `/config` \
+    _read-only volume containing custom config files_
+  - `/storage` \
+    _writable volume containing files (recording, logs, etc.) created during the
+    runtime_
+  - `/tmp` \
+    _writable volume containing temporary files created during the runtime_
+- The following `tmpsfs` folders are also writable:
   - `/run`
   - `/tmp`
-  - Volumes mounted with write permission
+- Generated config files are created inside `/run` using templates.
