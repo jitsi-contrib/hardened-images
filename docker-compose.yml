@@ -456,7 +456,7 @@ services:
         read_only: true
         tmpfs:
             - /run:exec,size=16M
-            - /tmp:exec,size=16M
+            - /tmp:size=16M
         ports:
             - '${JVB_PORT:-10000}:${JVB_PORT:-10000}/udp'
             - '127.0.0.1:${JVB_COLIBRI_PORT:-8080}:8080'
