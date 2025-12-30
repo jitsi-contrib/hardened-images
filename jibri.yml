@@ -5,7 +5,7 @@ services:
         read_only: true
         tmpfs:
             - /run:exec,size=256M
-            - /tmp:size=128M
+            - /tmp:size=256M
         volumes:
             - ${CONFIG}/jibri:/config:Z
             - ${CONFIG}/storage/jibri:/storage:Z
