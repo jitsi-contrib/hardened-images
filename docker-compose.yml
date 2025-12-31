@@ -11,7 +11,7 @@ services:
             - '${HTTP_PORT}:80'
             - '${HTTPS_PORT}:443'
         volumes:
-            - ${CONFIG}/web:/config:Z
+            - ${CONFIG}/web:/config:ro,Z
             - ${CONFIG}/storage/transcripts:/usr/share/jitsi-meet/transcripts:ro,z
             - ${CONFIG}/tmp/web-crontabs:/var/spool/cron/crontabs:Z
             - ${CONFIG}/tmp/web-load-test:/usr/share/jitsi-meet/load-test:Z
@@ -209,8 +209,8 @@ services:
         labels:
             service: "jitsi-prosody"
         volumes:
-            - ${CONFIG}/prosody/config:/config:Z
-            - ${CONFIG}/prosody/prosody-plugins-custom:/prosody-plugins-custom:Z
+            - ${CONFIG}/prosody/config:/config:ro,Z
+            - ${CONFIG}/prosody/prosody-plugins-custom:/prosody-plugins-custom:ro,Z
             - ${CONFIG}/storage/prosody:/var/lib/prosody:Z
         environment:
             - AUTH_TYPE
@@ -360,7 +360,7 @@ services:
         ports:
             - '127.0.0.1:${JICOFO_REST_PORT:-8888}:8888'
         volumes:
-            - ${CONFIG}/jicofo:/config:Z
+            - ${CONFIG}/jicofo:/config:ro,Z
         labels:
             service: "jitsi-jicofo"
         environment:
@@ -461,7 +461,7 @@ services:
             - '${JVB_PORT:-10000}:${JVB_PORT:-10000}/udp'
             - '127.0.0.1:${JVB_COLIBRI_PORT:-8080}:8080'
         volumes:
-            - ${CONFIG}/jvb:/config:Z
+            - ${CONFIG}/jvb:/config:ro,Z
         labels:
             service: "jitsi-jvb"
         environment:

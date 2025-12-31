@@ -7,7 +7,7 @@ services:
             - /run:exec,size=256M
             - /tmp:size=256M
         volumes:
-            - ${CONFIG}/jibri:/config:Z
+            - ${CONFIG}/jibri:/config:ro,Z
             - ${CONFIG}/storage/jibri:/storage:Z
         shm_size: '2gb'
         environment:
