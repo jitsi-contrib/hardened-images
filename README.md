@@ -106,3 +106,4 @@ docker compose down --remove-orphans
   - `/run`
   - `/tmp`
 - Generated config files are created inside `/run` using templates.
+- This implementation doesn't require `SYS_ADM` capability for `Jibri`.
