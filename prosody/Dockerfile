@@ -38,6 +38,7 @@ LABEL org.opencontainers.image.documentation="https://jitsi.github.io/handbook/"
 ARG VERSION_JITSI_CONTRIB_PROSODY_PLUGINS="20250923"
 ARG VERSION_MATRIX_USER_VERIFICATION_SERVICE_PLUGIN="1.8.0"
 ARG PROSODY_PACKAGE="prosody"
+ARG PROSODY_PACKAGE_VERSION="13.*"
 
 COPY rootfs /
 
@@ -57,7 +58,7 @@ RUN \
     lua-luaossl \
     lua-sec \
     lua-unbound \
-    $PROSODY_PACKAGE \
+    $PROSODY_PACKAGE=$PROSODY_PACKAGE_VERSION \
     sasl2-bin \
     && \
   apt-dpkg-wrap apt-get install -y -d \
