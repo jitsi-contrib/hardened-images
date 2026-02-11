@@ -91,7 +91,7 @@ docker compose down --remove-orphans
 ## Implementation details
 
 - [s6-overlay](https://github.com/just-containers/s6-overlay) is upgraded to the
-  latest stable version (`v3.2.1.0`)
+  latest stable version (`v3.2.2.0`)
 - All processes are executed by `s6` user without `root` privileges.
 - Containers' filesystems are read-only.
 - Mounted permanent volumes:

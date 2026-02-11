@@ -1,7 +1,7 @@
 FROM docker.io/library/debian:bookworm-slim
 
 ARG JITSI_RELEASE=stable
-ARG S6_OVERLAY_VERSION=v3.2.1.0
+ARG S6_OVERLAY_VERSION=v3.2.2.0
 ARG S6_OVERLAY_URL_BASE=https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}
 ARG TPL_VERSION=v1.5.0
 ARG TPL_URL_BASE=https://github.com/jitsi/tpl/releases/download/${TPL_VERSION}
