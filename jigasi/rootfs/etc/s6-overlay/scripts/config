@@ -93,10 +93,10 @@ elif [[ "$JIGASI_MODE" == "transcriber" ]]; then
     fi
 fi
 
-if [[ -f /run/jigasi/config/custom-sip-communicator.properties ]]; then
+if [[ -f "/run/jigasi/config/custom-sip-communicator.properties" ]]; then
     cat /run/jigasi/config/custom-sip-communicator.properties >> /run/jigasi/config/sip-communicator.properties
 fi
-if [[ -f /run/jigasi/config/custom-logging.properties ]]; then
+if [[ -f "/run/jigasi/config/custom-logging.properties" ]]; then
     cat /run/jigasi/config/custom-logging.properties >> /run/jigasi/config/logging.properties
 fi
 
