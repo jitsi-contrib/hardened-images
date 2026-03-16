@@ -58,11 +58,11 @@ RUN \
     lua-sec \
     lua-unbound \
     $PROSODY_PACKAGE=$PROSODY_PACKAGE_VERSION \
-    sasl2-bin
-RUN \
+    sasl2-bin \
+    && \
   apt-dpkg-wrap apt-get install -y -d \
-    jitsi-meet-prosody
-RUN \
+    jitsi-meet-prosody \
+    && \
   dpkg -x /var/cache/apt/archives/jitsi-meet-prosody*.deb /tmp/pkg && \
   cp -a /tmp/pkg/usr/share/jitsi-meet/prosody-plugins/* /prosody-plugins && \
   rm -rf /tmp/pkg && \
@@ -70,21 +70,21 @@ RUN \
   rm -rf /etc/prosody && \
   mv /usr/share/lua/5.3/inspect.lua /usr/share/lua/5.4/ && \
   rm -rf /usr/lib/lua/{5.1,5.2,5.3} && \
-  rm -rf /usr/share/lua/{5.1,5.2,5.3}
-RUN \
+  rm -rf /usr/share/lua/{5.1,5.2,5.3} && \
+\
   wget https://github.com/matrix-org/prosody-mod-auth-matrix-user-verification/archive/refs/tags/v$VERSION_MATRIX_USER_VERIFICATION_SERVICE_PLUGIN.tar.gz && \
   tar -xf v$VERSION_MATRIX_USER_VERIFICATION_SERVICE_PLUGIN.tar.gz && \
   mv prosody-mod-auth-matrix-user-verification-$VERSION_MATRIX_USER_VERIFICATION_SERVICE_PLUGIN/mod_auth_matrix_user_verification.lua /prosody-plugins && \
   mv prosody-mod-auth-matrix-user-verification-$VERSION_MATRIX_USER_VERIFICATION_SERVICE_PLUGIN/mod_matrix_power_sync.lua /prosody-plugins && \
-  rm -rf prosody-mod-auth-matrix-user-verification-$VERSION_MATRIX_USER_VERIFICATION_SERVICE_PLUGIN v$VERSION_MATRIX_USER_VERIFICATION_SERVICE_PLUGIN.tar.gz
-RUN \
+  rm -rf prosody-mod-auth-matrix-user-verification-$VERSION_MATRIX_USER_VERIFICATION_SERVICE_PLUGIN v$VERSION_MATRIX_USER_VERIFICATION_SERVICE_PLUGIN.tar.gz && \
+\
   VERSION_PROSODY_CONTRIB_PLUGINS=$(wget -q -O - https://api.github.com/repos/jitsi-contrib/prosody-plugins/tags | grep -m 1 '"name":' | cut -d '"' -f4) && \
   wget -q https://github.com/jitsi-contrib/prosody-plugins/archive/refs/tags/$VERSION_PROSODY_CONTRIB_PLUGINS.tar.gz && \
   mkdir /prosody-plugins-contrib && \
   tar --strip-components=1 -C /prosody-plugins-contrib -xf $VERSION_PROSODY_CONTRIB_PLUGINS.tar.gz && \
   rm -f $VERSION_PROSODY_CONTRIB_PLUGINS.tar.gz && \
-  (apt-cache policy prosody | grep -Eq "Installed: 13\." && sed -i '/idna_to_ascii/d' /usr/share/lua/5.4/prosody/util/jid.lua || true)
-RUN \
+  (apt-cache policy prosody | grep -Eq "Installed: 13\." && sed -i '/idna_to_ascii/d' /usr/share/lua/5.4/prosody/util/jid.lua || true) && \
+\
   usermod -a -G prosody,sasl s6 && \
   chown s6:sasl /var/run/saslauthd && \
   echo "TLS_REQCERT allow" >> /etc/ldap/ldap.conf
