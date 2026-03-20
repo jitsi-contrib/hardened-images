@@ -30,7 +30,7 @@ RUN \
   ln -s /run/web/tmp /var/lib/nginx && \
   apt-cleanup
 
-EXPOSE 8080 8443
+EXPOSE 8000 8443
 
 VOLUME ["/config", "/usr/share/jitsi-meet/transcripts"]
 
