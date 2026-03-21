@@ -10,21 +10,21 @@ configuration changes** are required compared to the standard setup.
 
 #### Security Hardening
 
-- **Non-Root Processes** \
+- **Non-Root Processes**\
   All components are configured to run with unprivileged user accounts to limit
   potential impact if a process is compromised.
 
-- **Read-Only Filesystem** \
+- **Read-Only Filesystem**\
   Containers are built to support running with a read-only root filesystem
   (_with specific paths mounted as writable volumes_), preventing unauthorized
   persistent changes to the image at runtime.
 
 #### Key Focus
 
-- **Reduced Attack Surface** \
+- **Reduced Attack Surface**\
   Focused strictly on security-first builds.
 
-- **Compatibility** \
+- **Compatibility**\
   Designed to function with official Jitsi logic with minimal adjustments.
 
 ## Volumes
@@ -95,15 +95,23 @@ docker compose down --remove-orphans
 - All processes are executed by `s6` user without `root` privileges.
 - Containers' filesystems are read-only.
 - Mounted permanent volumes:
-  - `/config` \
+  - `/config`\
     _read-only volume containing custom config files_
-  - `/storage` \
+  - `/storage`\
     _writable volume containing files (recording, logs, etc.) created during the
     runtime_
-  - `/tmp/<folder>` \
+  - `/tmp/<folder>`\
     _writable volume containing temporary files created during the runtime_
 - The following `tmpfs` volumes are also writable for `s6` user:
   - `/run`
   - `/tmp`
 - Generated config files are created inside `/run` using templates.
 - This implementation doesn't require `SYS_ADM` capability for `Jibri`.
+
+## Running on Kubernetes
+
+If you want to use these images on Kubernetes then check
+[values-hardened-simple.yaml](https://github.com/jitsi-contrib/jitsi-helm/blob/main/docs/samples/values-hardened-simple.yaml)
+and
+[values-hardened.yaml](https://github.com/jitsi-contrib/jitsi-helm/blob/main/docs/samples/values-hardened.yaml)
+in [jitsi-helm](https://github.com/jitsi-contrib/jitsi-helm).
