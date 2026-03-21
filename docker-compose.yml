@@ -5,8 +5,8 @@ services:
         restart: ${RESTART_POLICY:-unless-stopped}
         read_only: true
         tmpfs:
-            - /run:exec,size=16M
-            - /tmp:size=16M
+            - /run:size=16M,mode=1750,exec
+            - /tmp:size=16M,mode=1777,noexec
         ports:
             - '${HTTP_PORT}:8000'
             - '${HTTPS_PORT}:8443'
@@ -207,8 +207,8 @@ services:
         restart: ${RESTART_POLICY:-unless-stopped}
         read_only: true
         tmpfs:
-            - /run:exec,size=16M
-            - /tmp:size=16M
+            - /run:size=16M,mode=1750,exec
+            - /tmp:size=16M,mode=1777,noexec
         expose:
             - '${XMPP_PORT:-5222}'
             - '${PROSODY_S2S_PORT:-5269}'
@@ -363,8 +363,8 @@ services:
         restart: ${RESTART_POLICY:-unless-stopped}
         read_only: true
         tmpfs:
-            - /run:exec,size=16M
-            - /tmp:size=16M
+            - /run:size=16M,mode=1750,exec
+            - /tmp:size=16M,mode=1777,noexec
         ports:
             - '127.0.0.1:${JICOFO_REST_PORT:-8888}:8888'
         volumes:
@@ -463,8 +463,8 @@ services:
         restart: ${RESTART_POLICY:-unless-stopped}
         read_only: true
         tmpfs:
-            - /run:exec,size=16M
-            - /tmp:size=16M
+            - /run:size=16M,mode=1750,exec
+            - /tmp:size=16M,mode=1777,noexec
         ports:
             - '${JVB_PORT:-10000}:${JVB_PORT:-10000}/udp'
             - '127.0.0.1:${JVB_COLIBRI_PORT:-8080}:8080'

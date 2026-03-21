@@ -4,8 +4,8 @@ services:
         restart: ${RESTART_POLICY:-unless-stopped}
         read_only: true
         tmpfs:
-            - /run:exec,size=16M
-            - /tmp:size=128M
+            - /run:size=16M,mode=1750,exec
+            - /tmp:size=128M,mode=1777,noexec
         volumes:
             - ${CONFIG}/transcriber:/config:ro,Z
             - ${CONFIG}/storage/transcripts:/tmp/transcripts:z
